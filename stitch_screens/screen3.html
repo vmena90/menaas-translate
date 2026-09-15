@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-on-surface": "#283044", "primary-fixed": "#e1e0ff", "on-error-container": "#ffdad6", "inverse-surface": "#dae2fd", "primary-container": "#8083ff", "tertiary-container": "#8582ff", "on-surface": "#dae2fd", "secondary-fixed-dim": "#4cd7f6", "surface-tint": "#c0c1ff", "tertiary-fixed": "#e2dfff", "on-tertiary-fixed-variant": "#3323cc", "on-tertiary-fixed": "#0f0069", "surface-variant": "#2d3449", "secondary": "#4cd7f6", "surface": "#0b1326", "surface-container": "#171f33", "error": "#ffb4ab", "on-secondary-fixed": "#001f26", "on-surface-variant": "#c7c4d7", "tertiary": "#c3c0ff", "on-tertiary-container": "#180092", "surface-container-low": "#131b2e", "outline-variant": "#464554", "on-primary-fixed": "#07006c", "background": "#0b1326", "secondary-fixed": "#acedff", "surface-bright": "#31394d", "on-secondary-container": "#00424e", "surface-container-high": "#222a3d", "inverse-primary": "#494bd6", "on-secondary": "#003640", "surface-container-highest": "#2d3449", "on-error": "#690005", "surface-dim": "#0b1326", "outline": "#908fa0", "on-background": "#dae2fd", "on-tertiary": "#1d00a5", "on-secondary-fixed-variant": "#004e5c", "primary": "#c0c1ff", "error-container": "#93000a", "secondary-container": "#03b5d3", "surface-container-lowest": "#060e20", "tertiary-fixed-dim": "#c3c0ff", "on-primary-fixed-variant": "#2f2ebe", "primary-fixed-dim": "#c0c1ff", "on-primary": "#1000a9", "on-primary-container": "#0d0096" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "2rem", "gutter-mobile": "0.5rem", "gutter": "0.75rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "margin": "1.25rem", "space-md": "0.875rem" }, fontFamily: { "caption": ["Inter"], "body-lg": ["Inter"], "display-xl-mobile": ["Inter"], "body-md": ["Inter"], "label-mono-lg": ["JetBrains Mono"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "label-mono-sm": ["JetBrains Mono"], "headline-sm": ["Inter"], "display-xl": ["Inter"], "body-sm": ["Inter"] }, fontSize: { "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }], "body-lg": ["17px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-xl-mobile": ["34px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "label-mono-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#0b1326;color:#dae2fd;-webkit-font-smoothing:antialiased;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Vocalis Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUm0QHSG4LJLncKxpuv0il3pw2dKgS5NKEN7yluC06HD7-i1_PLNdGWpgk0eqBnmlWTewXm8liQl_sNrQF2XKu7leh8NynF1BqhbmkuFL-pvAJDJkeL1jzcuqd576Y9oQcByW3Qwj9j5iYY2QQdEjT7U84RfR2QasB8UG9lU4G2uvB9AjeJXG_sYjsHZyxp9_JC5CCkWmHP0IgdOhpq_5ga0uVgZwPdC-RaqPKK3pNr81DEC5uYP0w"/><div class="flex flex-col"><span class="font-caption text-caption text-secondary uppercase tracking-widest">Vocalis Transcribe</span><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate max-w-[160px]">Asignaturas</h1></div></div><div class="flex items-center gap-space-sm"><button aria-label="Buscar" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">search</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Subject Hero Sub-bar (Native iOS Style Bar) -->
+<section class="px-margin-mobile pt-space-xs pb-space-sm flex flex-col gap-space-sm">
+<!-- Top Nav Action Row -->
+<div class="flex items-center justify-between">
+<button aria-label="Volver a asignaturas" class="flex items-center gap-1 text-primary py-space-xs px-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[24px]">chevron_left</span>
+<span class="font-body-md text-body-md font-medium">Asignaturas</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest shadow-sm">
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold">EN</span>
+<span class="material-symbols-outlined text-[13px] text-on-surface-variant">arrow_forward</span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary font-semibold">ES</span>
+</div>
+<button aria-label="Opciones de asignatura" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Title & Metadata Bento Banner -->
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low p-space-md shadow-md">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(76,215,246,0.6)]"></span>
+<span class="font-caption text-caption uppercase tracking-wider text-secondary">Módulo B2 Avanzado</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight truncate">Inglés Profesional II</h2>
+</div>
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-primary shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+</div>
+<!-- Info Bar Micro-Pills -->
+<div class="mt-space-sm pt-space-xs flex flex-wrap items-center gap-x-space-sm gap-y-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary">mic</span>
+<span class="font-caption text-caption text-on-surface">8 grabaciones</span>
+</div>
+<span class="text-on-surface-variant text-caption">•</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary">timer</span>
+<span class="font-caption text-caption text-on-surface">4h 12m guardadas</span>
+</div>
+<span class="text-on-surface-variant text-caption">•</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed-dim">neurology</span>
+<span class="font-caption text-caption text-on-surface-variant">Apple Speech &amp; Web Audio API</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Pills Bar (Horizontal Scroll) -->
+<section class="w-full px-margin-mobile py-space-xs overflow-x-auto no-scrollbar flex items-center gap-2">
+<button class="filter-chip active-chip shrink-0 px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-caption text-caption font-semibold shadow-sm transition-transform active:scale-95" type="button">
+      Todas (8)
+    </button>
+<button class="filter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-caption text-caption transition-transform active:scale-95" type="button">
+      Con traducción (7)
+    </button>
+<button class="filter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-caption text-caption transition-transform active:scale-95" type="button">
+      Con marcadores (3)
+    </button>
+<button class="filter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-caption text-caption transition-transform active:scale-95" type="button">
+      Favoritas (2)
+    </button>
+</section>
+<!-- Prominent Quick Record Modal Trigger Card -->
+<section class="px-margin-mobile py-space-sm">
+<div class="relative overflow-hidden rounded-lg bg-gradient-to-br from-surface-container to-surface-container-high p-space-md shadow-lg transition-all duration-200" id="recordingInitiatorCard">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]">graphic_eq</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Iniciar Nueva Sesión</span>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary px-2 py-0.5 rounded-full bg-surface-container-lowest">Directo</span>
+</div>
+<!-- Micro form inline prompt -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-caption text-caption text-on-surface-variant font-medium" for="sessionNameInput">Nombre de la lección o tópico:</label>
+<div class="flex items-center gap-space-xs">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-on-surface-variant">edit_note</span>
+<input class="w-full bg-surface-container-lowest text-on-surface rounded-full pl-9 pr-3 py-2 font-body-sm text-body-sm placeholder:text-outline outline-none focus:ring-0 shadow-inner" id="sessionNameInput" placeholder="Ej. Unit 5: Contract Drafting" type="text" value="Unit 5: Cross-Border Arbitration"/>
+</div>
+<button class="shrink-0 flex items-center gap-1.5 bg-primary text-on-primary px-4 py-2 rounded-full font-headline-sm text-caption tracking-wide shadow-md transition-all active:scale-95 hover:bg-primary-fixed" id="startRecordingTrigger" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+<span>Grabar</span>
+</button>
+</div>
+</div>
+<div class="mt-space-xs flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-caption text-caption text-on-surface-variant">Detección de orador activo y traducción simultánea</span>
+</div>
+</div>
+</section>
+<!-- Recordings Section Title -->
+<div class="px-margin-mobile pt-space-xs pb-1 flex items-center justify-between">
+<span class="font-caption text-caption uppercase tracking-wider text-outline font-semibold">Archivos &amp; Transcripciones</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">3 sesiones recientes</span>
+</div>
+<!-- Recordings List Stack -->
+<section class="px-margin-mobile flex flex-col gap-space-sm pb-space-xl">
+<!-- Item 1: Unit 4 Corporate Negotiations -->
+<article class="relative rounded-lg bg-surface-container p-space-md shadow-md transition-transform active:scale-[0.99] flex flex-col gap-space-sm">
+<!-- Card Header -->
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<!-- Simulated Waveform Circular Canvas Preview -->
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+<rect height="6" opacity="0.4" rx="1" width="2" x="2" y="9"></rect>
+<rect height="12" opacity="0.7" rx="1" width="2" x="6" y="6"></rect>
+<rect height="18" rx="1" width="2" x="10" y="3"></rect>
+<rect height="14" rx="1" width="2" x="14" y="5"></rect>
+<rect height="8" opacity="0.8" rx="1" width="2" x="18" y="8"></rect>
+<rect height="4" opacity="0.4" rx="1" width="2" x="22" y="10"></rect>
+</svg>
+<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-secondary rounded-full flex items-center justify-center text-[9px] text-surface-container-lowest font-bold">✓</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">Unit 4: Corporate Negotiations</h3>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-caption text-caption text-secondary font-medium">Hoy 10:30 AM</span>
+<span class="text-caption">•</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">34:15</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-mono-sm text-label-mono-sm font-semibold">Traducido</span>
+<button aria-label="Marcar favorita" class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+</div>
+<!-- Waveform Progress Track -->
+<div class="w-full bg-surface-container-lowest rounded-full h-8 px-3 flex items-center gap-0.5 overflow-hidden">
+<button aria-label="Reproducir snippet" class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mr-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<!-- Static audio wave bars -->
+<div class="h-4 w-1 bg-secondary rounded-full"></div>
+<div class="h-6 w-1 bg-secondary rounded-full"></div>
+<div class="h-3 w-1 bg-secondary rounded-full"></div>
+<div class="h-5 w-1 bg-secondary rounded-full"></div>
+<div class="h-7 w-1 bg-primary rounded-full"></div>
+<div class="h-4 w-1 bg-primary rounded-full"></div>
+<div class="h-6 w-1 bg-primary rounded-full"></div>
+<div class="h-2 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-5 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-7 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-3 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-4 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-2 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-5 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-3 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-6 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-2 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-4 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-5 w-1 bg-surface-container-high rounded-full"></div>
+<div class="h-3 w-1 bg-surface-container-high rounded-full"></div>
+<span class="ml-auto font-label-mono-sm text-label-mono-sm text-on-surface-variant">04:12</span>
+</div>
+<!-- Bilingual Transcription Snippet Module -->
+<div class="rounded bg-surface-container-low p-space-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption uppercase text-secondary font-semibold">Vocalis Live Audio Transcript</span>
+<span class="font-label-mono-sm text-label-mono-sm text-outline">TC: 08:24</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+          “The negotiation terms require a clear clause on mutual liability before signing off on the intellectual property handover...”
+        </p>
+<div class="pt-space-xs mt-0.5 bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-primary">translate</span>
+<span class="font-caption text-caption text-primary font-medium">Español simultáneo</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic leading-snug">
+            “Los términos de negociación requieren una cláusula clara sobre responsabilidad mutua antes de autorizar el traspaso de propiedad intelectual...”
+          </p>
+</div>
+</div>
+<!-- Trailing Action Micro Footer -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">12 marcadores</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">4 participantes</span>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Copiar traducción" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+<button aria-label="Compartir sesión" class="w-7 h-7 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">ios_share</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Item 2: Vocabulary Mergers & Acquisitions -->
+<article class="relative rounded-lg bg-surface-container p-space-md shadow-md transition-transform active:scale-[0.99] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[20px]">graphic_eq</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">Vocabulary: Mergers &amp; Acquisitions</h3>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-caption text-caption">Ayer</span>
+<span class="text-caption">•</span>
+<span class="font-label-mono-sm text-label-mono-sm">18:20</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-mono-sm text-label-mono-sm font-semibold">Traducido</span>
+<button aria-label="Marcar favorita" class="w-8 h-8 rounded-full flex items-center justify-center text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Bilingual Transcription Snippet Module -->
+<div class="rounded bg-surface-container-low p-space-sm flex flex-col gap-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+          “Due diligence is critical before finalizing the share purchase agreement...”
+        </p>
+<div class="pt-space-xs mt-0.5 flex flex-col gap-0.5">
+<span class="font-caption text-caption text-primary font-medium">ES:</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic leading-snug">
+            “La debida diligencia es fundamental antes de finalizar el contrato de compra de acciones...”
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-caption text-caption">Glosario M&amp;A</span>
+</div>
+<button aria-label="Abrir detalles" class="flex items-center gap-1 text-primary hover:text-primary-fixed transition-colors" type="button">
+<span class="font-caption text-caption font-medium">Ver completo</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</article>
+<!-- Item 3: Pronunciation Lab: Phrasal Verbs -->
+<article class="relative rounded-lg bg-surface-container p-space-md shadow-md transition-transform active:scale-[0.99] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">mic_external_on</span>
+</div>
+<div class="flex flex-col min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">Pronunciation Lab: Phrasal Verbs</h3>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-caption text-caption">12 Oct</span>
+<span class="text-caption">•</span>
+<span class="font-label-mono-sm text-label-mono-sm">12:45</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-mono-sm text-label-mono-sm">Solo Audio y Transcripción</span>
+<button aria-label="Marcar favorita" class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+</div>
+<div class="rounded bg-surface-container-low p-space-sm flex flex-col gap-space-xs">
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+          “Focus on the connected speech cadence when uttering 'call off', 'bring up', and 'stand by for'...”
+        </p>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-caption text-caption text-on-surface-variant">Idioma origen: EN-US Puro</span>
+<button class="px-2.5 py-1 rounded-full bg-surface-container-highest hover:bg-surface-bright text-secondary text-caption font-medium transition-colors" type="button">
+          Solicitar Traducción
+        </button>
+</div>
+</article>
+</section>
+<!-- Floating Ambient Quick-Record FAB (Native Ergonomic Thumb Zone) -->
+<div class="fixed bottom-20 right-4 z-40">
+<button aria-label="Grabar sesión express" class="relative group w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_8px_24px_rgba(192,193,255,0.4)] transition-transform duration-200 active:scale-90" id="floatingRecordButton" type="button">
+<span class="absolute inset-0 rounded-full bg-primary-fixed opacity-20 animate-ping"></span>
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<!-- Interactive Title Confirmation Sheet (Accessible on click) -->
+<div class="fixed inset-0 z-50 bg-background/70 backdrop-blur-md hidden flex items-end justify-center pb-safe" id="recordingModalOverlay">
+<div class="w-full max-w-lg bg-surface-container-high rounded-t-lg p-space-lg flex flex-col gap-space-md shadow-2xl">
+<div class="w-10 h-1 rounded-full bg-outline mx-auto -mt-1 mb-1"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">radio_button_checked</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Configurar Grabación</h4>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" id="closeModalBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-caption text-caption text-on-surface-variant" for="modalTopicInput">Título de la sesión:</label>
+<input class="w-full bg-surface-container-lowest rounded-DEFAULT px-3.5 py-2.5 font-body-md text-body-md text-on-surface outline-none" id="modalTopicInput" type="text" value="Unit 5: Cross-Border Arbitration"/>
+</div>
+<div class="rounded-DEFAULT bg-surface-container-low p-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-caption text-caption text-on-surface font-semibold">Traducción Simultánea</span>
+<span class="font-caption text-caption text-on-surface-variant">Apple Speech &amp; Neural Engine</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container text-on-primary-container font-label-mono-sm text-label-mono-sm font-semibold">
+<span>EN</span>
+<span class="material-symbols-outlined text-[13px]">sync_alt</span>
+<span>ES</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<button class="flex-1 py-3 rounded-full bg-surface-container text-on-surface font-headline-sm text-body-md font-medium text-center" id="cancelRecordBtn" type="button">
+          Cancelar
+        </button>
+<button class="flex-1 py-3 rounded-full bg-primary text-on-primary font-headline-sm text-body-md font-bold text-center flex items-center justify-center gap-2 shadow-md" id="confirmRecordBtn" type="button">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+          Iniciar Grabación
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Filter chips interactive toggling
+  const filterChips = document.querySelectorAll('.filter-chip');
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      filterChips.forEach(c => {
+        c.classList.remove('bg-primary', 'text-on-primary', 'font-semibold');
+        c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+      });
+      chip.classList.add('bg-primary', 'text-on-primary', 'font-semibold');
+      chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+    });
+  });
+
+  // Modal Sheet Interaction for Recording confirmation
+  const overlay = document.getElementById('recordingModalOverlay');
+  const openTriggers = [
+    document.getElementById('startRecordingTrigger'),
+    document.getElementById('floatingRecordButton')
+  ];
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const cancelRecordBtn = document.getElementById('cancelRecordBtn');
+  const confirmRecordBtn = document.getElementById('confirmRecordBtn');
+  const sessionNameInput = document.getElementById('sessionNameInput');
+  const modalTopicInput = document.getElementById('modalTopicInput');
+
+  function openSheet() {
+    if (sessionNameInput && modalTopicInput) {
+      modalTopicInput.value = sessionNameInput.value || 'Nueva Lección de Inglés';
+    }
+    overlay.classList.remove('hidden');
+  }
+
+  function closeSheet() {
+    overlay.classList.add('hidden');
+  }
+
+  openTriggers.forEach(btn => {
+    if (btn) btn.addEventListener('click', openSheet);
+  });
+
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeSheet);
+  if (cancelRecordBtn) cancelRecordBtn.addEventListener('click', closeSheet);
+
+  if (confirmRecordBtn) {
+    confirmRecordBtn.addEventListener('click', () => {
+      confirmRecordBtn.innerText = 'Grabando...';
+      setTimeout(() => {
+        closeSheet();
+        confirmRecordBtn.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span> Iniciar Grabación';
+      }, 700);
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.25)]" data-active-classes="text-primary font-semibold"><div class="flex justify-around items-center h-16 px-gutter-mobile"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 transition-all text-primary font-semibold" data-path="asignaturas" href="#"><span class="material-symbols-outlined text-[24px]">folder</span><span class="font-caption text-caption">Asignaturas</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all" data-path="grabadora" href="#"><div class="w-10 h-10 -mt-3.5 rounded-full bg-primary flex items-center justify-center shadow-[0_4px_16px_rgba(192,193,255,0.35)]"><span class="material-symbols-outlined text-on-primary text-[22px]">mic</span></div><span class="font-caption text-caption mt-0.5">Grabadora</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all" data-path="historial" href="#"><span class="material-symbols-outlined text-[24px]">schedule</span><span class="font-caption text-caption">Historial</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all" data-path="ajustes" href="#"><span class="material-symbols-outlined text-[24px]">settings</span><span class="font-caption text-caption">Ajustes</span></a></div></nav></body></html>

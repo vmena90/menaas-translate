@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-on-surface": "#283044", "primary-fixed": "#e1e0ff", "on-error-container": "#ffdad6", "inverse-surface": "#dae2fd", "primary-container": "#8083ff", "tertiary-container": "#8582ff", "on-surface": "#dae2fd", "secondary-fixed-dim": "#4cd7f6", "surface-tint": "#c0c1ff", "tertiary-fixed": "#e2dfff", "on-tertiary-fixed-variant": "#3323cc", "on-tertiary-fixed": "#0f0069", "surface-variant": "#2d3449", "secondary": "#4cd7f6", "surface": "#0b1326", "surface-container": "#171f33", "error": "#ffb4ab", "on-secondary-fixed": "#001f26", "on-surface-variant": "#c7c4d7", "tertiary": "#c3c0ff", "on-tertiary-container": "#180092", "surface-container-low": "#131b2e", "outline-variant": "#464554", "on-primary-fixed": "#07006c", "background": "#0b1326", "secondary-fixed": "#acedff", "surface-bright": "#31394d", "on-secondary-container": "#00424e", "surface-container-high": "#222a3d", "inverse-primary": "#494bd6", "on-secondary": "#003640", "surface-container-highest": "#2d3449", "on-error": "#690005", "surface-dim": "#0b1326", "outline": "#908fa0", "on-background": "#dae2fd", "on-tertiary": "#1d00a5", "on-secondary-fixed-variant": "#004e5c", "primary": "#c0c1ff", "error-container": "#93000a", "secondary-container": "#03b5d3", "surface-container-lowest": "#060e20", "tertiary-fixed-dim": "#c3c0ff", "on-primary-fixed-variant": "#2f2ebe", "primary-fixed-dim": "#c0c1ff", "on-primary": "#1000a9", "on-primary-container": "#0d0096" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-xl": "2rem", "gutter-mobile": "0.5rem", "gutter": "0.75rem", "margin-mobile": "1rem", "space-lg": "1.25rem", "margin": "1.25rem", "space-md": "0.875rem" }, fontFamily: { "caption": ["Inter"], "body-lg": ["Inter"], "display-xl-mobile": ["Inter"], "body-md": ["Inter"], "label-mono-lg": ["JetBrains Mono"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "label-mono-sm": ["JetBrains Mono"], "headline-sm": ["Inter"], "display-xl": ["Inter"], "body-sm": ["Inter"] }, fontSize: { "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }], "body-lg": ["17px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "display-xl-mobile": ["34px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "label-mono-lg": ["16px", { "lineHeight": "20px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#0b1326;color:#dae2fd;-webkit-font-smoothing:antialiased;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Volver" class="w-11 h-11 rounded-full flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors -ml-1" onclick="history.back()"><span class="material-symbols-outlined text-[26px]">arrow_back_ios_new</span></button><img alt="Vocalis Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUm0QHSG4LJLncKxpuv0il3pw2dKgS5NKEN7yluC06HD7-i1_PLNdGWpgk0eqBnmlWTewXm8liQl_sNrQF2XKu7leh8NynF1BqhbmkuFL-pvAJDJkeL1jzcuqd576Y9oQcByW3Qwj9j5iYY2QQdEjT7U84RfR2QasB8UG9lU4G2uvB9AjeJXG_sYjsHZyxp9_JC5CCkWmHP0IgdOhpq_5ga0uVgZwPdC-RaqPKK3pNr81DEC5uYP0w"/><h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate max-w-[170px]">Detalle De Grabacion</h1></div><div class="flex items-center gap-space-sm"><button aria-label="Más opciones" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">more_vert</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-10">
+<!-- Dynamic Ambient Glow Backing -->
+<div class="fixed top-20 -left-16 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed top-96 -right-16 w-80 h-80 bg-secondary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Session Meta Card -->
+<section class="px-margin-mobile pt-space-md">
+<div class="bg-surface-container/85 backdrop-blur-xl rounded-lg p-margin shadow-md flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="bg-surface-container-highest/80 text-secondary font-caption text-caption px-space-sm py-0.5 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          Inglés Profesional II
+        </span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event</span>
+          18 Oct 2024
+        </span>
+</div>
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Unit 4: Corporate Negotiations</h2>
+<div class="flex items-center gap-space-sm mt-1">
+<span class="font-label-mono-sm text-label-mono-sm text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+              34:15
+            </span>
+<span class="text-outline-variant text-[12px]">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[15px]">translate</span>
+              EN-US → ES-MX
+            </span>
+</div>
+</div>
+<button aria-label="Favorito" class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-secondary transition-colors" id="favoriteBtn" onclick="toggleFav()">
+<span class="material-symbols-outlined text-[20px]" id="favIcon">bookmark_border</span>
+</button>
+</div>
+<!-- Quick Session Badges -->
+<div class="flex flex-wrap gap-1.5 pt-space-xs">
+<span class="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">Arbitration</span>
+<span class="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">Liability</span>
+<span class="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">B2B Contract</span>
+</div>
+</div>
+</section>
+<!-- Interactive Studio Audio Deck -->
+<section class="px-margin-mobile pt-space-md">
+<div class="bg-surface-container/90 backdrop-blur-2xl rounded-lg p-margin shadow-lg flex flex-col gap-space-md relative overflow-hidden">
+<!-- Deck Top Bar: Timestamp and Status -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+<span class="font-label-mono-sm text-label-mono-sm text-secondary-fixed tracking-wide uppercase font-semibold">Live Playback</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-mono-lg text-label-mono-lg text-primary font-bold" id="currentTime">08:24</span>
+<span class="font-label-mono-sm text-label-mono-sm text-on-surface-variant">/ 34:15</span>
+</div>
+</div>
+<!-- Tactile Waveform Scrubber -->
+<div class="relative w-full h-24 bg-surface-container-lowest/80 rounded flex items-center px-space-sm cursor-pointer select-none overflow-hidden" id="waveformContainer">
+<!-- Time Markers -->
+<div class="absolute top-1.5 left-2 right-2 flex justify-between pointer-events-none">
+<span class="font-label-mono-sm text-[10px] text-outline-variant">00:00</span>
+<span class="font-label-mono-sm text-[10px] text-outline-variant">08:00</span>
+<span class="font-label-mono-sm text-[10px] text-outline-variant">16:00</span>
+<span class="font-label-mono-sm text-[10px] text-outline-variant">24:00</span>
+<span class="font-label-mono-sm text-[10px] text-outline-variant">34:15</span>
+</div>
+<!-- Dynamic Bars -->
+<div class="w-full flex items-center justify-between gap-[2px] h-14 pt-2">
+<!-- Processed Bars (Pre-08:24) -->
+<div class="w-[3px] h-3 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-5 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-8 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-4 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-9 bg-primary rounded-full"></div>
+<div class="w-[3px] h-12 bg-primary rounded-full"></div>
+<div class="w-[3px] h-7 bg-primary rounded-full"></div>
+<div class="w-[3px] h-11 bg-primary rounded-full"></div>
+<div class="w-[3px] h-6 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-10 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-14 bg-primary rounded-full"></div>
+<div class="w-[3px] h-9 bg-primary rounded-full"></div>
+<div class="w-[3px] h-5 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-8 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-13 bg-primary rounded-full"></div>
+<div class="w-[3px] h-7 bg-primary rounded-full"></div>
+<div class="w-[3px] h-11 bg-primary rounded-full"></div>
+<div class="w-[3px] h-14 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-8 bg-secondary rounded-full"></div>
+<div class="w-[3px] h-12 bg-primary rounded-full"></div>
+<!-- Active Scrubber Cursor Point (Approx 25% pos) -->
+<div class="relative flex flex-col items-center">
+<div class="w-1.5 h-16 bg-on-surface rounded-full shadow-[0_0_12px_rgba(218,226,253,0.8)] z-10 animate-pulse"></div>
+<span class="absolute -bottom-4 bg-primary text-on-primary font-label-mono-sm text-[9px] px-1 rounded">08:24</span>
+</div>
+<!-- Unprocessed Bars (Post-08:24) -->
+<div class="w-[3px] h-10 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-6 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-13 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-7 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-11 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-4 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-8 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-12 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-5 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-9 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-14 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-6 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-10 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-3 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-7 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-11 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-5 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-9 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-13 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-6 bg-outline-variant/40 rounded-full"></div>
+<div class="w-[3px] h-4 bg-outline-variant/40 rounded-full"></div>
+</div>
+</div>
+<!-- Scrub Progress Bar Indicator -->
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-secondary to-primary h-full rounded-full" style="width: 24.5%;"></div>
+</div>
+<!-- Controls Transport Cluster -->
+<div class="flex items-center justify-between pt-space-xs">
+<!-- Speed Cycle Button -->
+<button class="h-9 px-space-sm bg-surface-container-high rounded-full flex items-center justify-center font-label-mono-sm text-label-mono-sm text-on-surface hover:bg-surface-bright transition-colors active:scale-95" id="speedToggle" onclick="cycleSpeed()" title="Velocidad de reproducción">
+<span class="text-primary font-bold" id="speedLabel">1.0x</span>
+</button>
+<!-- Transport Buttons -->
+<div class="flex items-center gap-space-md">
+<!-- Skip -15s -->
+<button aria-label="Retroceder 15 segundos" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:text-primary transition-all active:scale-90" onclick="skipTime(-15)">
+<span class="material-symbols-outlined text-[22px]">replay_10</span>
+</button>
+<!-- Master Play/Pause Core (72x72 HIG anchor) -->
+<button aria-label="Reproducir o Pausar" class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-lg hover:scale-105 active:scale-95 transition-all" id="masterPlayBtn" onclick="togglePlayState()">
+<span class="material-symbols-outlined text-[34px]" id="playStateIcon" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<!-- Skip +15s -->
+<button aria-label="Adelantar 15 segundos" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface hover:text-primary transition-all active:scale-90" onclick="skipTime(15)">
+<span class="material-symbols-outlined text-[22px]">forward_10</span>
+</button>
+</div>
+<!-- Audio Volume / Gain Quick Toggle -->
+<button aria-label="Silenciar o reactivar" class="h-9 w-9 bg-surface-container-high rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors active:scale-95" id="muteBtn" onclick="toggleMute()">
+<span class="material-symbols-outlined text-[19px]" id="volumeIcon">volume_up</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Segmented View Tabs -->
+<section class="px-margin-mobile pt-space-md">
+<div class="bg-surface-container-lowest/90 p-1 rounded-full flex items-center overflow-x-auto gap-1 shadow-inner">
+<button class="tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap bg-primary text-on-primary font-semibold transition-all" id="tab-dual" onclick="switchTab('dual')">
+        Vista Dual
+      </button>
+<button class="tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap text-on-surface-variant hover:text-on-surface transition-all" id="tab-transcript" onclick="switchTab('transcript')">
+        Solo Transcripción
+      </button>
+<button class="tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap text-on-surface-variant hover:text-on-surface transition-all" id="tab-translation" onclick="switchTab('translation')">
+        Solo Traducción
+      </button>
+<button class="tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap text-on-surface-variant hover:text-on-surface transition-all" id="tab-vocab" onclick="switchTab('vocab')">
+        Vocabulario
+      </button>
+</div>
+</section>
+<!-- Dual Synchronized Text Stream Section -->
+<section class="px-margin-mobile pt-space-md flex flex-col gap-space-md" id="tabContentStream">
+<!-- Stream Info Banner -->
+<div class="flex items-center justify-between px-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">sync_alt</span>
+<span class="font-caption text-caption text-on-surface-variant">Sincronización en vivo • Detección de orador</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary">hearing</span>
+<span class="font-label-mono-sm text-[11px] text-primary">Karaoke Activo</span>
+</div>
+</div>
+<!-- Block 1 (00:00 - 04:12) -->
+<div class="transcript-block bg-surface-container-low rounded-lg p-margin transition-all opacity-75 hover:opacity-100 flex flex-col gap-space-sm">
+<!-- Header Row -->
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<span class="bg-surface-container-high font-label-mono-sm text-[10px] text-secondary px-2 py-0.5 rounded-full font-bold">PROF. ADRIAN V.</span>
+<span class="font-label-mono-sm text-[11px] text-outline">00:00 → 04:12</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onclick="playSegment('00:00')" title="Reproducir este segmento">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onclick="copySnippet('Good morning everyone. Today we analyze cross-border arbitration...')" title="Copiar bloque">
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Source Text -->
+<div class="text-source flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">EN</span>
+<span class="font-caption text-[11px] text-outline">Audio Original</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+          "Good morning everyone. Today we analyze cross-border arbitration and the essential conditions that safeguard multinational agreements."
+        </p>
+</div>
+<div class="divider-line w-full h-[1px] bg-surface-container-highest my-1"></div>
+<!-- Translated Text -->
+<div class="text-translation flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-secondary-container px-1 rounded text-on-secondary-container font-semibold">ES</span>
+<span class="font-caption text-[11px] text-secondary">Traducción Neural</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          "Buenos días a todos. Hoy analizamos el arbitraje transfronterizo y las condiciones esenciales que salvaguardan los acuerdos multinacionales."
+        </p>
+</div>
+</div>
+<!-- Block 2 (04:13 - 08:24 - Active Segment with Glow & Highlight) -->
+<div class="transcript-block relative bg-surface-container rounded-lg p-margin shadow-lg flex flex-col gap-space-sm bg-gradient-to-b from-surface-container via-surface-container-high/60 to-surface-container transition-all">
+<!-- Glow rim accent -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-lg blur-sm pointer-events-none -z-10"></div>
+<!-- Header Row -->
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<span class="bg-primary-container text-on-primary-container font-label-mono-sm text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            ACTIVO • 04:13 → 08:24
+          </span>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow" title="Pausar segmento">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-surface-container-high text-secondary flex items-center justify-center hover:bg-surface-bright transition-colors" onclick="speakSnippet('The negotiation terms require a clear clause on mutual liability and indemnification.')" title="Leer en voz alta">
+<span class="material-symbols-outlined text-[16px]">volume_up</span>
+</button>
+<button class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onclick="copySnippet('The negotiation terms require a clear clause on mutual liability and indemnification. / Los términos de negociación requieren una cláusula clara sobre responsabilidad mutua e indemnización.')" title="Copiar bloque activo">
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Source Text with Highlight -->
+<div class="text-source flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-primary text-on-primary px-1 rounded font-bold">EN</span>
+<span class="font-caption text-[11px] text-primary-fixed">Voz en reproducción</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
+          "The negotiation terms require a clear clause on <mark class="bg-primary/30 text-primary-fixed px-1 rounded">mutual liability</mark> and <mark class="bg-secondary/30 text-secondary-fixed px-1 rounded">indemnification</mark>."
+        </p>
+</div>
+<div class="divider-line w-full h-[1px] bg-outline-variant/30 my-1"></div>
+<!-- Translated Text with Synchronized Highlight -->
+<div class="text-translation flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-secondary text-on-secondary px-1 rounded font-bold">ES</span>
+<span class="font-caption text-[11px] text-secondary-fixed-dim">Traducción sincrónica</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface leading-snug">
+          "Los términos de negociación requieren una cláusula clara sobre <mark class="bg-primary/20 text-on-surface px-1 rounded font-medium">responsabilidad mutua</mark> e <mark class="bg-secondary/20 text-on-surface px-1 rounded font-medium">indemnización</mark>."
+        </p>
+</div>
+</div>
+<!-- Block 3 (08:25 - 12:40 Upcoming) -->
+<div class="transcript-block bg-surface-container-low rounded-lg p-margin transition-all opacity-60 hover:opacity-100 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<div class="flex items-center gap-space-xs">
+<span class="bg-surface-container-high font-label-mono-sm text-[10px] text-on-surface-variant px-2 py-0.5 rounded-full font-bold">PROF. ADRIAN V.</span>
+<span class="font-label-mono-sm text-[11px] text-outline">08:25 → 12:40</span>
+</div>
+<button class="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onclick="playSegment('08:25')">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+</div>
+<div class="text-source flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">EN</span>
+<span class="font-caption text-[11px] text-outline">Audio Original</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+          "Without these protective measures, foreign jurisdictions can interpret failure of performance under differing civil codes."
+        </p>
+</div>
+<div class="divider-line w-full h-[1px] bg-surface-container-highest my-1"></div>
+<div class="text-translation flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">ES</span>
+<span class="font-caption text-[11px] text-outline">Traducción</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          "Sin estas medidas de protección, las jurisdicciones extranjeras pueden interpretar el incumplimiento bajo códigos civiles divergentes."
+        </p>
+</div>
+</div>
+</section>
+<!-- Key Vocabulary Card (Integrated Bento Element) -->
+<section class="px-margin-mobile pt-space-md" id="vocabSection">
+<div class="bg-surface-container-high/90 rounded-lg p-margin flex flex-col gap-space-sm shadow-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">auto_stories</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Vocabulario Clave Detectado</h3>
+</div>
+<span class="font-label-mono-sm text-label-mono-sm bg-surface-container px-2 py-0.5 rounded-full text-primary">3 Términos</span>
+</div>
+<div class="grid grid-cols-1 gap-2 pt-1">
+<!-- Vocab Item 1 -->
+<div class="bg-surface-container p-space-sm rounded flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Cross-border Arbitration</span>
+<span class="font-body-sm text-body-sm text-secondary">Arbitraje transfronterizo</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onclick="speakSnippet('Cross-border Arbitration')">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Vocab Item 2 -->
+<div class="bg-surface-container p-space-sm rounded flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Mutual Liability</span>
+<span class="font-body-sm text-body-sm text-secondary">Responsabilidad mutua</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onclick="speakSnippet('Mutual Liability')">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+<!-- Vocab Item 3 -->
+<div class="bg-surface-container p-space-sm rounded flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface font-semibold">Indemnification</span>
+<span class="font-body-sm text-body-sm text-secondary">Indemnización / Resarcimiento</span>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onclick="speakSnippet('Indemnification')">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Export and Utility Floating Bar -->
+<section class="px-margin-mobile pt-space-lg">
+<div class="bg-surface-container-highest/95 backdrop-blur-2xl rounded-lg p-margin shadow-xl flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-caption text-caption uppercase text-on-surface-variant tracking-wider font-semibold">Acciones y Exportación</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="grid grid-cols-1 gap-space-xs">
+<!-- TTS Play Button -->
+<button class="w-full h-12 bg-primary text-on-primary rounded-full flex items-center justify-center gap-space-sm hover:brightness-110 active:scale-[0.98] transition-all font-body-md text-body-md font-semibold shadow-md" onclick="speakAll()">
+<span class="material-symbols-outlined text-[20px]">record_voice_over</span>
+          Reproducir con TTS (Voz IA)
+        </button>
+<!-- Copy Bilingual Pair -->
+<button class="w-full h-11 bg-surface-container-high text-on-surface hover:bg-surface-bright rounded-full flex items-center justify-center gap-space-sm active:scale-[0.98] transition-all font-body-sm text-body-sm" onclick="copySnippet('Good morning everyone. Today we analyze cross-border arbitration... \n\nBuenos días a todos. Hoy analizamos el arbitraje transfronterizo... \n\nThe negotiation terms require a clear clause on mutual liability and indemnification. \n\nLos términos de negociación requieren una cláusula clara sobre responsabilidad mutua e indemnización.')">
+<span class="material-symbols-outlined text-[19px] text-secondary">copy_all</span>
+          Copiar texto bilingüe
+        </button>
+</div>
+<!-- Export Formats Grid -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="h-10 bg-surface-container rounded flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" onclick="triggerDownload('m4a')">
+<span class="material-symbols-outlined text-[18px] text-primary">audio_file</span>
+<span class="font-label-mono-sm text-label-mono-sm">Audio (.m4a)</span>
+</button>
+<button class="h-10 bg-surface-container rounded flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" onclick="triggerDownload('txt-pdf')">
+<span class="material-symbols-outlined text-[18px] text-secondary">description</span>
+<span class="font-label-mono-sm text-label-mono-sm">Notas (.txt / .pdf)</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Interactive Toast Feedback Banner -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-margin py-space-xs rounded-full font-body-sm text-body-sm shadow-2xl flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300 z-50" id="toastNotification">
+<span class="material-symbols-outlined text-[18px] text-inverse-primary" id="toastIcon">check_circle</span>
+<span id="toastMessage">Texto copiado al portapapeles</span>
+</div>
+</div>
+<script>
+  // State handling for Play/Pause and Speed
+  let isPlaying = true;
+  let currentSpeedIdx = 0;
+  const speeds = ['1.0x', '1.25x', '1.5x', '2.0x'];
+  let isMuted = false;
+  let isFavorited = false;
+
+  function togglePlayState() {
+    isPlaying = !isPlaying;
+    const icon = document.getElementById('playStateIcon');
+    if (isPlaying) {
+      icon.innerText = 'pause';
+      showToast('Reproducción reanudada');
+    } else {
+      icon.innerText = 'play_arrow';
+      showToast('Reproducción pausada');
+    }
+  }
+
+  function cycleSpeed() {
+    currentSpeedIdx = (currentSpeedIdx + 1) % speeds.length;
+    document.getElementById('speedLabel').innerText = speeds[currentSpeedIdx];
+    showToast('Velocidad ajustada: ' + speeds[currentSpeedIdx]);
+  }
+
+  function skipTime(seconds) {
+    showToast((seconds > 0 ? '+' : '') + seconds + 's desplazados');
+  }
+
+  function toggleMute() {
+    isMuted = !isMuted;
+    const volIcon = document.getElementById('volumeIcon');
+    volIcon.innerText = isMuted ? 'volume_off' : 'volume_up';
+    showToast(isMuted ? 'Audio silenciado' : 'Volumen restaurado');
+  }
+
+  function toggleFav() {
+    isFavorited = !isFavorited;
+    const icon = document.getElementById('favIcon');
+    if (isFavorited) {
+      icon.innerText = 'bookmark';
+      icon.style.fontVariationSettings = "'FILL' 1";
+      showToast('Guardado en favoritos');
+    } else {
+      icon.innerText = 'bookmark_border';
+      icon.style.fontVariationSettings = "'FILL' 0";
+      showToast('Eliminado de favoritos');
+    }
+  }
+
+  function playSegment(timecode) {
+    document.getElementById('currentTime').innerText = timecode;
+    isPlaying = true;
+    document.getElementById('playStateIcon').innerText = 'pause';
+    showToast('Saltando a ' + timecode);
+  }
+
+  function copySnippet(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text);
+    }
+    showToast('Copiado al portapapeles');
+  }
+
+  function speakSnippet(phrase) {
+    if ('speechSynthesis' in window) {
+      const utter = new SpeechSynthesisUtterance(phrase);
+      utter.rate = 1.0;
+      window.speechSynthesis.speak(utter);
+    }
+    showToast('Reproduciendo audio TTS');
+  }
+
+  function speakAll() {
+    showToast('Iniciando síntesis de voz continua');
+  }
+
+  function triggerDownload(type) {
+    showToast('Generando archivo ' + type + '...');
+  }
+
+  function switchTab(mode) {
+    const tabs = ['dual', 'transcript', 'translation', 'vocab'];
+    tabs.forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (el) {
+        if (t === mode) {
+          el.className = 'tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap bg-primary text-on-primary font-semibold transition-all';
+        } else {
+          el.className = 'tab-btn flex-1 py-1.5 px-space-sm rounded-full font-caption text-caption text-center whitespace-nowrap text-on-surface-variant hover:text-on-surface transition-all';
+        }
+      }
+    });
+
+    const sources = document.querySelectorAll('.text-source');
+    const translations = document.querySelectorAll('.text-translation');
+    const dividers = document.querySelectorAll('.divider-line');
+    const stream = document.getElementById('tabContentStream');
+    const vocabSec = document.getElementById('vocabSection');
+
+    if (mode === 'dual') {
+      stream.classList.remove('hidden');
+      sources.forEach(s => s.classList.remove('hidden'));
+      translations.forEach(tr => tr.classList.remove('hidden'));
+      dividers.forEach(d => d.classList.remove('hidden'));
+      vocabSec.classList.remove('hidden');
+    } else if (mode === 'transcript') {
+      stream.classList.remove('hidden');
+      sources.forEach(s => s.classList.remove('hidden'));
+      translations.forEach(tr => tr.classList.add('hidden'));
+      dividers.forEach(d => d.classList.add('hidden'));
+      vocabSec.classList.add('hidden');
+    } else if (mode === 'translation') {
+      stream.classList.remove('hidden');
+      sources.forEach(s => s.classList.add('hidden'));
+      translations.forEach(tr => tr.classList.remove('hidden'));
+      dividers.forEach(d => d.classList.add('hidden'));
+      vocabSec.classList.add('hidden');
+    } else if (mode === 'vocab') {
+      stream.classList.add('hidden');
+      vocabSec.classList.remove('hidden');
+    }
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById('toastNotification');
+    const label = document.getElementById('toastMessage');
+    label.innerText = msg;
+    toast.classList.remove('opacity-0', 'pointer-events-none');
+    toast.classList.add('opacity-100');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.add('opacity-0', 'pointer-events-none');
+      toast.classList.remove('opacity-100');
+    }, 2200);
+  }
+</script></main></body></html>
