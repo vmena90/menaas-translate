@@ -49,10 +49,6 @@ export default defineConfig({
     host: true
   },
   build: {
-    sourcemap: false,
-    minify: 'esbuild'
-  },
-  esbuild: {
-    drop: ['console', 'debugger']
+    sourcemap: false
   }
 })
