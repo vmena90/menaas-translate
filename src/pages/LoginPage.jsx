@@ -25,7 +25,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen relative overflow-hidden">
+    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-[100dvh] relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary/20 rounded-full blur-[100px] pointer-events-none"></div>

@@ -47,7 +47,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-surface font-body-md text-body-md text-on-surface">
+    <div className="flex flex-col min-h-[100dvh] bg-surface font-body-md text-body-md text-on-surface">
       {/* Header */}
       <header className="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]">
         <div className="h-16 px-margin-mobile flex items-center justify-between">

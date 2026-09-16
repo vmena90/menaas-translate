@@ -195,7 +195,7 @@ export default function SubjectPage() {
   if (isRecordingView) {
     const sourceLangLabel = sourceLang === 'en' ? 'English (US)' : 'Português (BR)';
     return (
-      <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+      <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-[100dvh]">
         <header className="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]">
           <div className="h-16 px-gutter flex items-center justify-between">
             <div className="flex items-center gap-space-xs">
@@ -210,7 +210,7 @@ export default function SubjectPage() {
           </div>
         </header>
 
-        <main className="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen">
+        <main className="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-[100dvh]">
           
           {/* Overlay Transcripcion Groq */}
           {isTranscribingGroq && (
@@ -376,7 +376,7 @@ export default function SubjectPage() {
 
   // --- LIST VIEW (screen3.html) ---
   return (
-    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-[100dvh]">
       <header className="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]">
         <div className="h-16 px-margin-mobile flex items-center justify-between">
           <div className="flex items-center gap-space-sm">
@@ -392,7 +392,7 @@ export default function SubjectPage() {
         </div>
       </header>
 
-      <main className="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen">
+      <main className="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-[100dvh]">
         <div className="flex flex-col w-full">
           
           {/* Subject Hero */}

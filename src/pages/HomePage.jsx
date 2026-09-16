@@ -95,7 +95,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
+    <div className="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-[100dvh]">
       <header className="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.15)]">
         <div className="h-16 px-margin-mobile flex items-center justify-between">
           <div className="flex items-center gap-space-sm">
@@ -111,7 +111,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <main className="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen">
+      <main className="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-[100dvh]">
         <div className="flex flex-col w-full px-margin-mobile pb-space-xl gap-space-lg">
           {/* Top Action & Search Bar Section */}
           <section className="flex flex-col gap-space-md pt-space-xs">
