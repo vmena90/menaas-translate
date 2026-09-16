@@ -329,7 +329,6 @@ export default function SubjectPage() {
                   El audio se está grabando en alta fidelidad y con aislamiento acústico. Al finalizar, la grabación completa será procesada en milisegundos en la nube por el modelo más potente y preciso del mundo, garantizando cero "alucinaciones" incluso con ruidos de altavoz y acentos complejos.
                 </p>
               </div>
-            </div></div>
             </div>
 
             {/* Bottom Deck */}
