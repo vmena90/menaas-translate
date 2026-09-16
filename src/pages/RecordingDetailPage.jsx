@@ -17,6 +17,7 @@ function RecordingDetailPage() {
   const [isMuted, setIsMuted] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const [currentTimeCode, setCurrentTimeCode] = useState('00:00');
+  const audioRef = useRef(null);
   
   // Estado de la pestaña
   const [activeTab, setActiveTab] = useState('dual');
@@ -55,22 +56,64 @@ function RecordingDetailPage() {
     }, 2200);
   };
 
+  useEffect(() => {
+    if (recording?.audioBlob) {
+      const url = URL.createObjectURL(recording.audioBlob);
+      const audioEl = new Audio(url);
+      audioRef.current = audioEl;
+
+      const handleTimeUpdate = () => {
+        const t = Math.floor(audioEl.currentTime);
+        const m = Math.floor(t / 60).toString().padStart(2, '0');
+        const s = (t % 60).toString().padStart(2, '0');
+        setCurrentTimeCode(`${m}:${s}`);
+      };
+
+      audioEl.addEventListener('timeupdate', handleTimeUpdate);
+      audioEl.addEventListener('ended', () => setIsPlaying(false));
+
+      return () => {
+        audioEl.removeEventListener('timeupdate', handleTimeUpdate);
+        audioEl.pause();
+        audioEl.src = '';
+        URL.revokeObjectURL(url);
+      };
+    }
+  }, [recording]);
+
   const togglePlayState = () => {
-    setIsPlaying(!isPlaying);
-    showToast(!isPlaying ? 'Reproducción reanudada' : 'Reproducción pausada');
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      showToast('Reproducción pausada');
+    } else {
+      audioRef.current.play();
+      setIsPlaying(true);
+      showToast('Reproducción reanudada');
+    }
   };
 
   const cycleSpeed = () => {
     const nextIdx = (playbackSpeedIdx + 1) % speeds.length;
     setPlaybackSpeedIdx(nextIdx);
+    if (audioRef.current) {
+      audioRef.current.playbackRate = parseFloat(speeds[nextIdx]);
+    }
     showToast(`Velocidad ajustada: ${speeds[nextIdx]}`);
   };
 
   const skipTime = (seconds) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime += seconds;
+    }
     showToast(`${seconds > 0 ? '+' : ''}${seconds}s desplazados`);
   };
 
   const toggleMute = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+    }
     setIsMuted(!isMuted);
     showToast(!isMuted ? 'Audio silenciado' : 'Volumen restaurado');
   };

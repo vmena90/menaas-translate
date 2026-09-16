@@ -51,13 +51,14 @@ export default function SubjectPage() {
 
   const [subject, setSubject] = useState(null);
   const [recordings, setRecordings] = useState([]);
-  const [sourceLang, setSourceLang] = useState('en');
+  const [sourceLang, setSourceLang] = useState(() => localStorage.getItem('sourceLang') || 'pt');
   const [isLoading, setIsLoading] = useState(true);
   
   const [sessionName, setSessionName] = useState('Nueva Lección');
   const [isRecordingView, setIsRecordingView] = useState(false);
   const [markers, setMarkers] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
+  const [countdown, setCountdown] = useState(null);
 
   const audio = useAudioRecorder();
   const speech = useSpeechRecognition();
@@ -80,17 +81,33 @@ export default function SubjectPage() {
 
   useEffect(() => { loadData(); }, [loadData]);
 
-  const handleStartRecording = async () => {
-    try {
-      await audio.start();
-      speech.start(sourceLang);
-      setIsRecordingView(true);
-      setMarkers(0);
-    } catch (err) {
-      console.error(err);
-      alert('Error al iniciar micrófono. Verifica los permisos. Si estás en iPhone, Safari requiere HTTPS para grabar audio, excepto si accedes por localhost.');
-    }
+  const handleStartRecording = () => {
+    setIsRecordingView(true);
+    setCountdown(2);
   };
+
+  useEffect(() => {
+    if (countdown === null) return;
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (countdown === 0) {
+      const startServices = async () => {
+        try {
+          await audio.start();
+          speech.start(sourceLang);
+          setMarkers(0);
+          setCountdown(null);
+        } catch (err) {
+          console.error(err);
+          alert('Error al iniciar micrófono. Verifica los permisos. Si estás en iPhone, Safari requiere HTTPS para grabar audio, excepto si accedes por localhost.');
+          setIsRecordingView(false);
+          setCountdown(null);
+        }
+      };
+      startServices();
+    }
+  }, [countdown, audio, speech, sourceLang]);
 
   const handleTogglePause = () => {
     if (audio.state === 'recording') {
@@ -207,12 +224,20 @@ export default function SubjectPage() {
             <div className="flex flex-col items-center justify-center py-space-md px-space-md rounded-xl bg-surface-container-low shadow-sm relative overflow-hidden">
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="flex items-center gap-space-xs mb-1">
-                <span className={`w-2.5 h-2.5 rounded-full ${audio.state === 'recording' ? 'bg-error animate-ping' : 'bg-secondary'}`}></span>
-                <span className={`font-label-mono-sm text-label-mono-sm font-medium tracking-wide ${audio.state === 'recording' ? 'text-error' : 'text-secondary'}`}>
-                  {audio.state === 'recording' ? 'REC EN VIVO' : 'PAUSADO'}
-                </span>
-              </div>
+              {countdown !== null && countdown > 0 ? (
+                <div className="flex items-center gap-space-xs mb-1">
+                  <span className="font-label-mono-sm text-label-mono-sm font-medium tracking-wide text-primary">
+                    INICIANDO EN {countdown}...
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-space-xs mb-1">
+                  <span className={`w-2.5 h-2.5 rounded-full ${audio.state === 'recording' ? 'bg-error animate-ping' : 'bg-secondary'}`}></span>
+                  <span className={`font-label-mono-sm text-label-mono-sm font-medium tracking-wide ${audio.state === 'recording' ? 'text-error' : 'text-secondary'}`}>
+                    {audio.state === 'recording' ? 'REC EN VIVO' : 'PAUSADO'}
+                  </span>
+                </div>
+              )}
               <div className="flex items-baseline gap-1 my-1">
                 <span className="font-label-mono-lg text-[38px] leading-tight font-bold text-on-surface tracking-tight">
                   {formatDuration(audio.duration)}
@@ -426,7 +451,7 @@ export default function SubjectPage() {
 
           <section className="px-margin-mobile flex flex-col gap-space-sm pb-space-xl">
             {recordings.map((rec) => (
-              <article key={rec.id} className="relative rounded-lg bg-surface-container p-space-md shadow-md flex flex-col gap-space-sm">
+              <article key={rec.id} onClick={() => navigate(`/recording/${rec.id}`)} className="cursor-pointer relative rounded-lg bg-surface-container p-space-md shadow-md flex flex-col gap-space-sm active:scale-[0.99] transition-transform">
                 <div className="flex items-start justify-between gap-space-sm">
                   <div className="flex items-center gap-space-sm min-w-0">
                     <div className="relative w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
@@ -447,7 +472,7 @@ export default function SubjectPage() {
                     <span className="px-2 py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-mono-sm text-label-mono-sm font-semibold">
                       {rec.targetLang ? 'Traducido' : 'Audio'}
                     </span>
-                    <button aria-label="Eliminar grabación" className="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-error transition-colors" type="button" onClick={() => handleDeleteRecording(rec.id)}>
+                    <button aria-label="Eliminar grabación" className="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-error transition-colors" type="button" onClick={(e) => { e.stopPropagation(); handleDeleteRecording(rec.id); }}>
                       <span className="material-symbols-outlined text-[18px]">delete</span>
                     </button>
                   </div>
