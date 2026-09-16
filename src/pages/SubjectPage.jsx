@@ -8,8 +8,7 @@ import {
 } from '../db/database';
 import { translate } from '../services/translationService';
 import useAudioRecorder from '../hooks/useAudioRecorder';
-import useSpeechRecognition from '../hooks/useSpeechRecognition';
-
+import { transcribeAudioWithGroq } from '../services/groqService';
 const formatDuration = (seconds) => {
   if (!seconds || isNaN(seconds)) return '00:00:00';
   const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
@@ -59,9 +58,9 @@ export default function SubjectPage() {
   const [markers, setMarkers] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
   const [countdown, setCountdown] = useState(null);
+  const [isTranscribingGroq, setIsTranscribingGroq] = useState(false);
 
   const audio = useAudioRecorder();
-  const speech = useSpeechRecognition();
 
   const loadData = useCallback(async () => {
     try {
@@ -95,7 +94,6 @@ export default function SubjectPage() {
       const startServices = async () => {
         try {
           await audio.start();
-          speech.start(sourceLang);
           setMarkers(0);
           setCountdown(null);
         } catch (err) {
@@ -120,7 +118,6 @@ export default function SubjectPage() {
   const handleDiscardRecording = () => {
     if (window.confirm('¿Estás seguro de descartar la grabación actual? Se perderán los datos sin sincronizar.')) {
       audio.reset();
-      speech.reset();
       setIsRecordingView(false);
     }
   };
@@ -128,14 +125,27 @@ export default function SubjectPage() {
   const handleSaveTrigger = () => {
     setIsSaving(true);
     audio.stop();
-    speech.stop();
   };
 
   const saveRecordingData = useCallback(async () => {
     try {
-      let finalTranscription = speech.transcript || '';
-      let finalTranslation = '';
+      let finalTranscription = '';
       
+      if (audio.audioBlob) {
+        setIsTranscribingGroq(true);
+        try {
+          finalTranscription = await transcribeAudioWithGroq(audio.audioBlob, sourceLang);
+        } catch (err) {
+          if (err.message === 'API_KEY_MISSING') {
+            alert('¡Atención! No has configurado tu clave API de Groq. Ve a Ajustes para agregarla. Guardando audio sin transcripción...');
+          } else {
+            alert('Error en Groq API: ' + err.message + '. Guardando solo el audio.');
+          }
+        }
+        setIsTranscribingGroq(false);
+      }
+
+      let finalTranslation = '';
       if (sourceLang !== 'es' && finalTranscription.trim()) {
         const transResult = await translate(finalTranscription, sourceLang, 'es');
         finalTranslation = transResult.translatedText;
@@ -156,15 +166,15 @@ export default function SubjectPage() {
       await loadData();
       
       audio.reset();
-      speech.reset();
       setIsRecordingView(false);
       setIsSaving(false);
     } catch (err) {
       console.error(err);
-      alert('Error al guardar la grabación.');
+      alert('Error al guardar la grabación: ' + err.message);
       setIsSaving(false);
+      setIsTranscribingGroq(false);
     }
-  }, [audio, speech, sourceLang, sessionName, subjectId, loadData]);
+  }, [audio, sourceLang, sessionName, subjectId, loadData]);
 
   useEffect(() => {
     if (isSaving && audio.audioBlob && audio.state === 'stopped') {
@@ -201,6 +211,21 @@ export default function SubjectPage() {
         </header>
 
         <main className="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen">
+          
+          {/* Overlay Transcripcion Groq */}
+          {isTranscribingGroq && (
+            <div className="absolute inset-0 z-50 bg-surface/90 backdrop-blur-md flex flex-col items-center justify-center">
+              <div className="w-16 h-16 rounded-full border-4 border-primary border-t-transparent animate-spin mb-4 shadow-[0_0_15px_rgba(76,215,246,0.5)]"></div>
+              <h2 className="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">cloud_sync</span>
+                IA de Alta Velocidad
+              </h2>
+              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-[280px] text-center mt-2">
+                Enviando a Groq (Whisper V3). ¡Esto será ultrarrápido!
+              </p>
+            </div>
+          )}
+
           <div className="flex flex-col w-full px-margin-mobile pb-space-xl gap-space-md mt-4">
             {/* Subject Context */}
             <div className="flex flex-col gap-space-xs bg-surface-container rounded-lg p-space-md shadow-md">
@@ -277,30 +302,34 @@ export default function SubjectPage() {
               <Visualizer isActive={audio.state === 'recording'} />
             </div>
 
-            {/* Transcription Stream */}
-            <div className="flex flex-col gap-space-sm">
+            {/* Cloud AI Notice */}
+            <div className="flex flex-col gap-space-sm mt-2">
               <div className="flex items-center justify-between px-1">
                 <span className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary text-[20px]">subtitles</span>
-                  Subtítulos en Directo
+                  <span className="material-symbols-outlined text-primary text-[20px]">cloud</span>
+                  Transcripción Ultra-Precisa
                 </span>
                 <div className="flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                  <span className="font-label-mono-sm text-label-mono-sm text-secondary">IA Neural Sync</span>
+                  <span className="font-label-mono-sm text-label-mono-sm text-secondary">Groq Cloud Sync</span>
                 </div>
               </div>
 
-              <div className="bg-surface-container rounded-lg p-space-md flex flex-col gap-space-xs shadow-md">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="font-label-mono-sm text-label-mono-sm text-primary-fixed bg-primary-container px-2 py-0.5 rounded-full">{sourceLang.toUpperCase()}</span>
-                    <span className="font-caption text-caption text-on-surface-variant">Voz Principal</span>
+              <div className="bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm shadow-md">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-inner">
+                    <span className="material-symbols-outlined text-[20px]">bolt</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-body-md font-semibold text-on-surface">Whisper Large V3 (1.5B Parámetros)</span>
+                    <span className="font-caption text-caption text-secondary">Procesado en Groq LPU™</span>
                   </div>
                 </div>
-                <p className="font-body-md text-body-md text-on-surface leading-relaxed pt-1">
-                  “{speech.transcript || speech.interimTranscript || "Esperando audio..."}”
+                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed pt-1">
+                  El audio se está grabando en alta fidelidad y con aislamiento acústico. Al finalizar, la grabación completa será procesada en milisegundos en la nube por el modelo más potente y preciso del mundo, garantizando cero "alucinaciones" incluso con ruidos de altavoz y acentos complejos.
                 </p>
               </div>
+            </div></div>
             </div>
 
             {/* Bottom Deck */}

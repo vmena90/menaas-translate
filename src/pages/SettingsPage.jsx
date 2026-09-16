@@ -5,6 +5,7 @@ import { clearAllData } from '../db/database';
 
 export default function SettingsPage() {
   const navigate = useNavigate();
+  const [groqApiKey, setGroqApiKey] = useState(() => localStorage.getItem('groqApiKey') || '');
   const [sourceLang, setSourceLang] = useState(() => localStorage.getItem('sourceLang') || 'pt');
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'system');
   const [customTranslateUrl, setCustomTranslateUrl] = useState(() => localStorage.getItem('customTranslateUrl') || '');
@@ -87,6 +88,55 @@ export default function SettingsPage() {
           </div>
         </section>
 
+        {/* Appearance Settings */}
+        <section className="bg-surface-container rounded-xl shadow-sm overflow-hidden mb-4">
+          <div className="flex items-center gap-space-sm px-space-md py-space-sm bg-surface-container-high/50 border-b border-surface-container-highest">
+            <span className="material-symbols-outlined text-secondary text-[20px]">palette</span>
+            <h2 className="font-headline-sm text-headline-sm font-semibold text-on-surface">Apariencia</h2>
+          </div>
+          <div className="flex flex-col">
+            <div className="flex items-center justify-between p-space-md">
+              <div className="flex flex-col">
+                <span className="font-body-lg text-body-lg text-on-surface">Modo Oscuro</span>
+                <span className="font-caption text-caption text-on-surface-variant">Ajusta el tema visual</span>
+              </div>
+              <div className="w-12 h-6 bg-primary rounded-full relative shadow-inner cursor-pointer" onClick={() => alert('Próximamente disponible')}>
+                <div className="absolute right-1 top-1 w-4 h-4 bg-on-primary rounded-full shadow-sm"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* API Settings */}
+        <section className="bg-surface-container rounded-xl shadow-sm overflow-hidden mb-4">
+          <div className="flex items-center gap-space-sm px-space-md py-space-sm bg-surface-container-high/50 border-b border-surface-container-highest">
+            <span className="material-symbols-outlined text-primary text-[20px]">key</span>
+            <h2 className="font-headline-sm text-headline-sm font-semibold text-on-surface">Claves de API (IA)</h2>
+          </div>
+          <div className="flex flex-col p-space-md gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="font-body-md text-body-md font-semibold text-on-surface">Groq API Key</label>
+              <span className="font-caption text-caption text-on-surface-variant">Necesaria para usar la transcripción ultrarrápida Whisper V3.</span>
+            </div>
+            <div className="relative">
+              <span className="material-symbols-outlined absolute left-3 top-3 text-on-surface-variant text-[20px]">password</span>
+              <input 
+                type="password" 
+                placeholder="gsk_..."
+                value={groqApiKey}
+                onChange={(e) => {
+                  setGroqApiKey(e.target.value);
+                  localStorage.setItem('groqApiKey', e.target.value);
+                }}
+                className="w-full bg-surface-container-lowest text-on-surface border border-outline-variant focus:border-primary rounded-lg pl-10 pr-3 py-2.5 font-body-md text-body-md shadow-inner transition-colors"
+              />
+            </div>
+            <a href="https://console.groq.com/keys" target="_blank" rel="noreferrer" className="text-primary font-body-sm text-body-sm hover:underline flex items-center gap-1">
+              Obtener una clave gratuita de Groq
+              <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+            </a>
+          </div>
+        </section>
 
         {/* Datos Section */}
         <section className="flex flex-col gap-space-sm">
