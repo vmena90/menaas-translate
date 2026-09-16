@@ -116,21 +116,15 @@ export default function SettingsPage() {
       {/* Tab Bar Borrowed from screen1.html */}
       <nav className="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl shadow-[0_-1px_12px_rgba(0,0,0,0.25)]">
         <div className="flex justify-around items-center h-16 px-gutter-mobile">
-          <button onClick={() => navigate('/')} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all">
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 transition-all text-on-surface-variant hover:text-on-surface">
             <span className="material-symbols-outlined text-[24px]">folder</span>
             <span className="font-caption text-caption">Asignaturas</span>
-          </button>
-          <button onClick={() => navigate('/recorder')} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all">
-            <div className="w-10 h-10 -mt-3.5 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm">
-              <span className="material-symbols-outlined text-on-surface text-[22px]">mic</span>
-            </div>
-            <span className="font-caption text-caption mt-0.5">Grabadora</span>
-          </button>
+          </a>
 
-          <button onClick={() => navigate('/settings')} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 transition-all text-primary font-semibold">
+          <a href="#" onClick={(e) => e.preventDefault()} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-primary transition-all font-semibold">
             <span className="material-symbols-outlined text-[24px]">settings</span>
             <span className="font-caption text-caption">Ajustes</span>
-          </button>
+          </a>
         </div>
       </nav>
 

@@ -243,12 +243,6 @@ function RecordingDetailPage() {
                   </span>
                 </button>
               </div>
-              {/* Quick Session Badges */}
-              <div className="flex flex-wrap gap-1.5 pt-space-xs">
-                <span className="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">Arbitration</span>
-                <span className="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">Liability</span>
-                <span className="bg-surface-container-lowest/70 text-on-surface-variant font-label-mono-sm text-label-mono-sm px-2 py-0.5 rounded">B2B Contract</span>
-              </div>
             </div>
           </section>
 
@@ -366,8 +360,7 @@ function RecordingDetailPage() {
               {[
                 { id: 'dual', label: 'Vista Dual' },
                 { id: 'transcript', label: 'Solo Transcripción' },
-                { id: 'translation', label: 'Solo Traducción' },
-                { id: 'vocab', label: 'Vocabulario' }
+                { id: 'translation', label: 'Solo Traducción' }
               ].map(tab => (
                 <button 
                   key={tab.id}
@@ -384,199 +377,36 @@ function RecordingDetailPage() {
             </div>
           </section>
 
-          {/* Tab Content Streams */}
-          {activeTab !== 'vocab' && (
-            <section className="px-margin-mobile pt-space-md flex flex-col gap-space-md">
-              <div className="flex items-center justify-between px-space-xs">
-                <div className="flex items-center gap-space-xs">
-                  <span className="material-symbols-outlined text-secondary text-[16px]">sync_alt</span>
-                  <span className="font-caption text-caption text-on-surface-variant">Sincronización en vivo • Detección de orador</span>
+          {/* Real Transcription & Translation */}
+          <section className="px-margin-mobile pt-space-md flex flex-col gap-space-md pb-space-2xl">
+            {(activeTab === 'dual' || activeTab === 'transcript') && recording?.transcription && (
+              <div className="bg-surface-container-low rounded-lg p-margin flex flex-col gap-space-sm shadow-sm">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">{recording.sourceLang?.toUpperCase()}</span>
+                  <span className="font-caption text-[11px] text-outline">Transcripción Original</span>
                 </div>
-                <div className="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full">
-                  <span className="material-symbols-outlined text-[14px] text-primary">hearing</span>
-                  <span className="font-label-mono-sm text-[11px] text-primary">Karaoke Activo</span>
-                </div>
+                <p className="font-body-lg text-body-lg text-on-surface leading-relaxed whitespace-pre-wrap">
+                  {recording.transcription}
+                </p>
               </div>
-
-              {/* Block 1 */}
-              <div className="transcript-block bg-surface-container-low rounded-lg p-margin transition-all opacity-75 hover:opacity-100 flex flex-col gap-space-sm">
-                <div className="flex items-center justify-between pb-1">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="bg-surface-container-high font-label-mono-sm text-[10px] text-secondary px-2 py-0.5 rounded-full font-bold">PROF. ADRIAN V.</span>
-                    <span className="font-label-mono-sm text-[11px] text-outline">00:00 → 04:12</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button className="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onClick={() => playSegment('00:00')} title="Reproducir">
-                      <span className="material-symbols-outlined text-[16px]">play_arrow</span>
-                    </button>
-                    <button className="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onClick={() => copySnippet('Good morning everyone. Today we analyze cross-border arbitration...')} title="Copiar bloque">
-                      <span className="material-symbols-outlined text-[15px]">content_copy</span>
-                    </button>
-                  </div>
+            )}
+            
+            {(activeTab === 'dual' || activeTab === 'translation') && recording?.translation && (
+              <div className="bg-surface-container-low rounded-lg p-margin flex flex-col gap-space-sm shadow-sm">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <span className="font-label-mono-sm text-[10px] bg-secondary-container px-1 rounded text-on-secondary-container font-semibold">{recording.targetLang?.toUpperCase()}</span>
+                  <span className="font-caption text-[11px] text-secondary">Traducción Neural</span>
                 </div>
-
-                {(activeTab === 'dual' || activeTab === 'transcript') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">EN</span>
-                      <span className="font-caption text-[11px] text-outline">Audio Original</span>
-                    </div>
-                    <p className="font-body-md text-body-md text-on-surface leading-relaxed">
-                      "Good morning everyone. Today we analyze cross-border arbitration and the essential conditions that safeguard multinational agreements."
-                    </p>
-                  </div>
-                )}
-                
-                {activeTab === 'dual' && <div className="w-full h-[1px] bg-surface-container-highest my-1"></div>}
-                
-                {(activeTab === 'dual' || activeTab === 'translation') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-secondary-container px-1 rounded text-on-secondary-container font-semibold">ES</span>
-                      <span className="font-caption text-[11px] text-secondary">Traducción Neural</span>
-                    </div>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      "Buenos días a todos. Hoy analizamos el arbitraje transfronterizo y las condiciones esenciales que salvaguardan los acuerdos multinacionales."
-                    </p>
-                  </div>
-                )}
+                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed whitespace-pre-wrap">
+                  {recording.translation}
+                </p>
               </div>
-
-              {/* Block 2 (Active) */}
-              <div className="relative bg-surface-container rounded-lg p-margin shadow-lg flex flex-col gap-space-sm bg-gradient-to-b from-surface-container via-surface-container-high/60 to-surface-container transition-all">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-lg blur-sm pointer-events-none -z-10"></div>
-                
-                <div className="flex items-center justify-between pb-1">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="bg-primary-container text-on-primary-container font-label-mono-sm text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-                      ACTIVO • 04:13 → 08:24
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button className="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shadow" title="Pausar segmento">
-                      <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>pause</span>
-                    </button>
-                    <button className="w-7 h-7 rounded-full bg-surface-container-high text-secondary flex items-center justify-center hover:bg-surface-bright transition-colors" onClick={() => speakSnippet('The negotiation terms require a clear clause on mutual liability and indemnification.')} title="Leer en voz alta">
-                      <span className="material-symbols-outlined text-[16px]">volume_up</span>
-                    </button>
-                    <button className="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onClick={() => copySnippet('The negotiation terms require a clear clause...')} title="Copiar bloque activo">
-                      <span className="material-symbols-outlined text-[15px]">content_copy</span>
-                    </button>
-                  </div>
-                </div>
-
-                {(activeTab === 'dual' || activeTab === 'transcript') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-primary text-on-primary px-1 rounded font-bold">EN</span>
-                      <span className="font-caption text-[11px] text-primary-fixed">Voz en reproducción</span>
-                    </div>
-                    <p className="font-body-lg text-body-lg text-on-surface font-medium leading-snug">
-                      "The negotiation terms require a clear clause on <mark className="bg-primary/30 text-primary-fixed px-1 rounded bg-transparent">mutual liability</mark> and <mark className="bg-secondary/30 text-secondary-fixed px-1 rounded bg-transparent">indemnification</mark>."
-                    </p>
-                  </div>
-                )}
-                
-                {activeTab === 'dual' && <div className="w-full h-[1px] bg-outline-variant/30 my-1"></div>}
-                
-                {(activeTab === 'dual' || activeTab === 'translation') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-secondary text-on-secondary px-1 rounded font-bold">ES</span>
-                      <span className="font-caption text-[11px] text-secondary-fixed-dim">Traducción sincrónica</span>
-                    </div>
-                    <p className="font-body-lg text-body-lg text-on-surface leading-snug">
-                      "Los términos de negociación requieren una cláusula clara sobre <mark className="bg-primary/20 text-on-surface px-1 rounded font-medium bg-transparent">responsabilidad mutua</mark> e <mark className="bg-secondary/20 text-on-surface px-1 rounded font-medium bg-transparent">indemnización</mark>."
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Block 3 */}
-              <div className="bg-surface-container-low rounded-lg p-margin transition-all opacity-60 hover:opacity-100 flex flex-col gap-space-sm">
-                <div className="flex items-center justify-between pb-1">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="bg-surface-container-high font-label-mono-sm text-[10px] text-on-surface-variant px-2 py-0.5 rounded-full font-bold">PROF. ADRIAN V.</span>
-                    <span className="font-label-mono-sm text-[11px] text-outline">08:25 → 12:40</span>
-                  </div>
-                  <button className="w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center hover:text-primary transition-colors" onClick={() => playSegment('08:25')}>
-                    <span className="material-symbols-outlined text-[16px]">play_arrow</span>
-                  </button>
-                </div>
-                
-                {(activeTab === 'dual' || activeTab === 'transcript') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">EN</span>
-                      <span className="font-caption text-[11px] text-outline">Audio Original</span>
-                    </div>
-                    <p className="font-body-md text-body-md text-on-surface leading-relaxed">
-                      "Without these protective measures, foreign jurisdictions can interpret failure of performance under differing civil codes."
-                    </p>
-                  </div>
-                )}
-
-                {activeTab === 'dual' && <div className="w-full h-[1px] bg-surface-container-highest my-1"></div>}
-
-                {(activeTab === 'dual' || activeTab === 'translation') && (
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <span className="font-label-mono-sm text-[10px] bg-surface-variant px-1 rounded text-on-surface-variant font-semibold">ES</span>
-                      <span className="font-caption text-[11px] text-outline">Traducción</span>
-                    </div>
-                    <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                      "Sin estas medidas de protección, las jurisdicciones extranjeras pueden interpretar el incumplimiento bajo códigos civiles divergentes."
-                    </p>
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
-
-          {/* Vocabulary Section */}
-          {activeTab === 'vocab' && (
-            <section className="px-margin-mobile pt-space-md">
-              <div className="bg-surface-container-high/90 rounded-lg p-margin flex flex-col gap-space-sm shadow-md">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-space-xs">
-                    <span className="material-symbols-outlined text-secondary text-[20px]">auto_stories</span>
-                    <h3 className="font-headline-sm text-headline-sm text-on-surface">Vocabulario Clave Detectado</h3>
-                  </div>
-                  <span className="font-label-mono-sm text-label-mono-sm bg-surface-container px-2 py-0.5 rounded-full text-primary">3 Términos</span>
-                </div>
-                <div className="grid grid-cols-1 gap-2 pt-1">
-                  <div className="bg-surface-container p-space-sm rounded flex items-center justify-between">
-                    <div className="flex flex-col">
-                      <span className="font-body-md text-body-md text-on-surface font-semibold">Cross-border Arbitration</span>
-                      <span className="font-body-sm text-body-sm text-secondary">Arbitraje transfronterizo</span>
-                    </div>
-                    <button className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onClick={() => speakSnippet('Cross-border Arbitration')}>
-                      <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                    </button>
-                  </div>
-                  <div className="bg-surface-container p-space-sm rounded flex items-center justify-between">
-                    <div className="flex flex-col">
-                      <span className="font-body-md text-body-md text-on-surface font-semibold">Mutual Liability</span>
-                      <span className="font-body-sm text-body-sm text-secondary">Responsabilidad mutua</span>
-                    </div>
-                    <button className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onClick={() => speakSnippet('Mutual Liability')}>
-                      <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                    </button>
-                  </div>
-                  <div className="bg-surface-container p-space-sm rounded flex items-center justify-between">
-                    <div className="flex flex-col">
-                      <span className="font-body-md text-body-md text-on-surface font-semibold">Indemnification</span>
-                      <span className="font-body-sm text-body-sm text-secondary">Indemnización / Resarcimiento</span>
-                    </div>
-                    <button className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant hover:text-primary" onClick={() => speakSnippet('Indemnification')}>
-                      <span className="material-symbols-outlined text-[18px]">volume_up</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          )}
+            )}
+            
+            {!recording?.transcription && !recording?.translation && (
+              <p className="text-center text-outline-variant font-body-sm py-4">No hay transcripción disponible para esta grabación.</p>
+            )}
+          </section>
 
           {/* Actions & Export */}
           <section className="px-margin-mobile pt-space-lg">

@@ -168,6 +168,7 @@ export default function SubjectPage() {
 
   useEffect(() => {
     if (isSaving && audio.audioBlob && audio.state === 'stopped') {
+      setIsSaving(false);
       saveRecordingData();
     }
   }, [isSaving, audio.audioBlob, audio.state, saveRecordingData]);
@@ -520,12 +521,6 @@ export default function SubjectPage() {
           <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 transition-all text-primary font-semibold">
             <span className="material-symbols-outlined text-[24px]">folder</span>
             <span className="font-caption text-caption">Asignaturas</span>
-          </a>
-          <a href="#" onClick={(e) => e.preventDefault()} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all">
-            <div className="w-10 h-10 -mt-3.5 rounded-full bg-primary flex items-center justify-center shadow-[0_4px_16px_rgba(192,193,255,0.35)]">
-              <span className="material-symbols-outlined text-on-primary text-[22px]">mic</span>
-            </div>
-            <span className="font-caption text-caption mt-0.5">Grabadora</span>
           </a>
 
           <a href="#" onClick={(e) => { e.preventDefault(); navigate('/settings'); }} className="flex flex-col items-center justify-center gap-0.5 min-w-[44px] min-h-[44px] px-2 text-on-surface-variant hover:text-on-surface transition-all">
