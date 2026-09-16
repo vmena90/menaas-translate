@@ -13,7 +13,7 @@ export default function LoginPage() {
 
     const users = {
       'menayera': '2452004',
-      'jgonzalez': '0672002'
+      'jgonzalez': '0692002'
     };
 
     if (users[username] && users[username] === password) {
