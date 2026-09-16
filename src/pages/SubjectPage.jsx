@@ -105,7 +105,7 @@ export default function SubjectPage() {
       };
       startServices();
     }
-  }, [countdown, audio, speech, sourceLang]);
+  }, [countdown, audio, sourceLang]);
 
   const handleTogglePause = () => {
     if (audio.state === 'recording') {

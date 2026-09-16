@@ -33,7 +33,46 @@ const fetchWithTimeout = async (url, options = {}, timeoutMs = 8000) => {
 };
 
 /**
- * Proveedor 1: MyMemory API (Primario)
+ * Proveedor 0: Groq LLM (El más inteligente, requiere API Key)
+ */
+const translateGroqLlama = async (text, source, target) => {
+  const apiKey = localStorage.getItem('groqApiKey');
+  if (!apiKey) throw new Error('No Groq API Key');
+
+  const langMap = { es: 'Español', en: 'Inglés', pt: 'Portugués' };
+  const targetLangName = langMap[target] || target;
+  const sourceLangName = langMap[source] || source;
+
+  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-8b-instant',
+      messages: [
+        {
+          role: 'system',
+          content: `You are a professional translator. Translate the following text from ${sourceLangName} to ${targetLangName}. Preserve the exact tone, meaning, and context. Do NOT add any extra text, explanations, or notes. ONLY return the translated text.`
+        },
+        {
+          role: 'user',
+          content: text
+        }
+      ],
+      temperature: 0.3
+    })
+  });
+
+  if (!response.ok) throw new Error(`Groq LLM error: ${response.status}`);
+  
+  const data = await response.json();
+  return data.choices[0].message.content.trim();
+};
+
+/**
+ * Proveedor 1: MyMemory API (Primario Gratis)
  */
 const translateMyMemory = async (text, source, target) => {
   const encodedText = encodeURIComponent(text);
@@ -114,6 +153,17 @@ export const translate = async (text, sourceLang, targetLang, customLibreTransla
   }
 
   const errors = [];
+
+  // Intento 0: Groq Llama 3 (El más inteligente)
+  if (localStorage.getItem('groqApiKey')) {
+    try {
+      const translatedText = await translateGroqLlama(text, sourceLang, targetLang);
+      translationCache.set(cacheKey, translatedText);
+      return { translatedText, provider: 'Groq-Llama3' };
+    } catch (err) {
+      errors.push(`Groq-Llama3: ${err.message}`);
+    }
+  }
 
   // Intento 1: MyMemory
   try {

@@ -187,6 +187,17 @@ export default function HomePage() {
                             </div>
                           </div>
                         </div>
+                        
+                        <button 
+                          aria-label="Opciones de asignatura"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleContextMenu(e, subject.id);
+                          }}
+                          className="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest hover:bg-surface-container-highest text-on-surface-variant transition-colors shadow-sm -mr-2"
+                        >
+                          <span className="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
                       </div>
                       
                       <div className="flex items-center justify-between pt-space-xs mt-space-xs bg-surface-container-low/60 rounded-DEFAULT px-space-sm py-1.5" onClick={() => navigate(`/subject/${subject.id}`)}>

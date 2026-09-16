@@ -156,6 +156,17 @@ export default function SettingsPage() {
             >
               Borrar todos los datos
             </button>
+            <div className="border-t border-surface-container-highest"></div>
+            <button 
+              onClick={() => {
+                localStorage.removeItem('currentUser');
+                navigate('/login', { replace: true });
+              }}
+              className="w-full text-left p-space-md font-body-lg text-body-lg text-secondary active:bg-surface-container-high transition-colors flex items-center justify-between"
+            >
+              <span>Cerrar Sesión ({localStorage.getItem('currentUser')})</span>
+              <span className="material-symbols-outlined text-[20px]">logout</span>
+            </button>
           </div>
         </section>
 
