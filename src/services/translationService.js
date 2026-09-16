@@ -33,35 +33,18 @@ const fetchWithTimeout = async (url, options = {}, timeoutMs = 8000) => {
 };
 
 /**
- * Proveedor 0: Groq LLM (El más inteligente, requiere API Key)
+ * Proveedor 0: API Proxy Seguro (Groq LLM)
  */
 const translateGroqLlama = async (text, source, target) => {
-  const apiKey = localStorage.getItem('groqApiKey');
-  if (!apiKey) throw new Error('No Groq API Key');
-
-  const langMap = { es: 'Español', en: 'Inglés', pt: 'Portugués' };
-  const targetLangName = langMap[target] || target;
-  const sourceLangName = langMap[source] || source;
-
-  const response = await fetchWithTimeout('https://api.groq.com/openai/v1/chat/completions', {
+  const response = await fetchWithTimeout('/api/ai-proxy?action=translate', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'llama-3.1-8b-instant',
-      messages: [
-        {
-          role: 'system',
-          content: `You are a professional translator. Translate the following text from ${sourceLangName} to ${targetLangName}. Preserve the exact tone, meaning, and context. Do NOT add any extra text, explanations, or notes. ONLY return the translated text.`
-        },
-        {
-          role: 'user',
-          content: text
-        }
-      ],
-      temperature: 0.3
+      text,
+      source,
+      target
     })
   });
 
@@ -154,15 +137,13 @@ export const translate = async (text, sourceLang, targetLang, customLibreTransla
 
   const errors = [];
 
-  // Intento 0: Groq Llama 3 (El más inteligente)
-  if (localStorage.getItem('groqApiKey')) {
-    try {
-      const translatedText = await translateGroqLlama(text, sourceLang, targetLang);
-      translationCache.set(cacheKey, translatedText);
-      return { translatedText, provider: 'Groq-Llama3' };
-    } catch (err) {
-      errors.push(`Groq-Llama3: ${err.message}`);
-    }
+  // Intento 0: API Proxy Seguro (Llama 3)
+  try {
+    const translatedText = await translateGroqLlama(text, sourceLang, targetLang);
+    translationCache.set(cacheKey, translatedText);
+    return { translatedText, provider: 'Groq-Llama3-Proxy' };
+  } catch (err) {
+    errors.push(`Groq-Llama3-Proxy: ${err.message}`);
   }
 
   // Intento 1: MyMemory

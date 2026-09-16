@@ -1,4 +1,5 @@
 import Dexie from 'dexie';
+import { encryptText, decryptText, encryptBlob, decryptBlob } from './crypto';
 
 // Inicializar la base de datos Dexie
 const db = new Dexie('VoiceClassDB');
@@ -48,27 +49,57 @@ export const deleteSubject = async (id) => {
 
 // Funciones auxiliares para recordings (grabaciones)
 export const getRecordingsBySubject = async (subjectId) => {
-  return await db.recordings
+  const recordings = await db.recordings
     .where('subjectId')
     .equals(subjectId)
     .reverse()
     .sortBy('createdAt');
+    
+  return Promise.all(recordings.map(async (rec) => ({
+    ...rec,
+    transcription: await decryptText(rec.transcription),
+    translation: await decryptText(rec.translation),
+    audioBlob: await decryptBlob(rec.audioBlob, rec.iv)
+  })));
 };
 
 export const getRecording = async (id) => {
-  return await db.recordings.get(id);
+  const rec = await db.recordings.get(id);
+  if (!rec) return null;
+  return {
+    ...rec,
+    transcription: await decryptText(rec.transcription),
+    translation: await decryptText(rec.translation),
+    audioBlob: await decryptBlob(rec.audioBlob, rec.iv)
+  };
 };
 
 export const addRecording = async ({ subjectId, name, audioBlob, mimeType, audioDuration, transcription, translation, sourceLang, targetLang }) => {
   const now = Date.now();
+  
+  // Encrypt sensitive data
+  const encTrans = await encryptText(transcription);
+  const encTransl = await encryptText(translation);
+  let finalBlob = audioBlob;
+  let iv = null;
+  
+  if (audioBlob) {
+    const encResult = await encryptBlob(audioBlob);
+    if (encResult) {
+      finalBlob = encResult.encryptedBlob;
+      iv = encResult.iv;
+    }
+  }
+
   return await db.recordings.add({
     subjectId,
     name,
-    audioBlob,
+    audioBlob: finalBlob,
+    iv,
     mimeType,
     audioDuration,
-    transcription,
-    translation,
+    transcription: encTrans,
+    translation: encTransl,
     sourceLang,
     targetLang,
     date: now,

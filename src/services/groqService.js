@@ -1,9 +1,4 @@
 export const transcribeAudioWithGroq = async (audioBlob, language) => {
-  const apiKey = localStorage.getItem('groqApiKey');
-  if (!apiKey) {
-    throw new Error('API_KEY_MISSING');
-  }
-
   const formData = new FormData();
   
   // Groq API requere un nombre de archivo con extensión soportada
@@ -21,11 +16,8 @@ export const transcribeAudioWithGroq = async (audioBlob, language) => {
   formData.append('response_format', 'json');
 
   try {
-    const response = await fetch('https://api.groq.com/openai/v1/audio/transcriptions', {
+    const response = await fetch('/api/ai-proxy?action=transcribe', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`
-      },
       body: formData
     });
 

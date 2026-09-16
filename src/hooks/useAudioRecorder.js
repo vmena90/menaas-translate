@@ -39,7 +39,11 @@ const useAudioRecorder = () => {
     }
     
     if (streamRef.current) {
-      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current.getTracks().forEach(track => {
+        track.stop();
+        if (track.enabled) track.enabled = false;
+      });
+      streamRef.current = null;
     }
     
     if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
@@ -200,7 +204,11 @@ const useAudioRecorder = () => {
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
       
       if (streamRef.current) {
-        streamRef.current.getTracks().forEach(track => track.stop());
+        streamRef.current.getTracks().forEach(track => {
+          track.stop();
+          track.enabled = false;
+        });
+        streamRef.current = null;
       }
       setAudioLevel(0);
     }
